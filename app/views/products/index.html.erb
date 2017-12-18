@@ -1,0 +1,61 @@
+<style>
+.button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 1px;
+    cursor: pointer;
+}
+</style>
+
+<h1>Products</h1>
+ <select id="target">
+  <option value="created_at">Recent Projects</option>
+  <option value="category">Order By Category Name</option>
+  <option value="user_name">Order By Username</option>
+  <option value="title">Order By Project Title</option>
+</select> 
+
+<div id="products">
+<table>
+  <thead>
+    <tr>
+      <th>Project Title</th>
+      <th>Username</th>
+      <th>CategoryName</th>
+    </tr>
+  </thead>
+
+  <tbody id="response">
+
+  </tbody>
+</table>
+</div>
+<% ((Product.count / 2)+(Product.count % 2)).times do |i| %>
+  <button class="button" onclick="getTable(<%=(i+1)%>)"> <%= (i+1) %> </button>
+<% end%>
+<br/>
+<%= link_to 'New Product', new_product_path %>
+
+<script>
+$(document).ready(function(){
+getTable(1)
+});
+
+$("#target").change(function(){
+getTable(1)
+});
+
+function getTable(page){
+  var sort = $("#target").find(":selected")[0].value
+  $.ajax({url: "/paginated_product/" + sort + "/" +page,
+   success: function(result){
+      $("#response").html(result['message']);
+  }});  
+}
+</script>

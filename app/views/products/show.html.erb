@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @product.name.to_s %>
+</p>
+
+
+<p>
+  <strong>User:</strong>
+  <%= @product.user.try("user_name").to_s %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @product.category.try("name").to_s %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

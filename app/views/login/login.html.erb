@@ -1,0 +1,5 @@
+<%= form_tag(login_log_in_path,:method=>"get") do %>
+User Name: <%= text_field_tag(:user_name, value = nil, options = {})  %><br>
+Password: <%= password_field_tag(:password, value = nil, options = {})  %><br>
+<%= submit_tag(value = "Login", options = {}) %>
+<% end %>
