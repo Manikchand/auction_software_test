@@ -6,3 +6,5 @@ rails version: 5.1.4
 
 
 Use username: Manik, password: secret for login
+
+passwords are MD5 digested and is taken care in after create so make sure if user created without filter or directly in database you need to MD5 the string
