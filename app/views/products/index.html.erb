@@ -36,7 +36,7 @@
   </tbody>
 </table>
 </div>
-<% ((Product.count / 2)+(Product.count % 2)).times do |i| %>
+<% ((Product.count / PER_PAGE)+((Product.count%PER_PAGE).to_f/PER_PAGE).ceil).times do |i| %>
   <button class="button" onclick="getTable(<%=(i+1)%>)"> <%= (i+1) %> </button>
 <% end%>
 <br/>

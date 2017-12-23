@@ -15,15 +15,15 @@ class ProductsController < ApplicationController
   def paginated_product
     page = params[:page].to_i
     if params[:sort].to_s == "created_at"
-      @products = Product.all.sort_by{|x| x.created_at}[(((page-1)*2))..(((page-1)*2)+1)]
+      @products = Product.all.sort_by{|x| x.created_at}[(((page-1)*(PER_PAGE)))..(((page-1)*(PER_PAGE))+(PER_PAGE-1))]
     elsif params[:sort].to_s == "category"
-      @products = Product.all.sort_by{|x| x.category.try("name").to_s}[(((page-1)*2))..(((page-1)*2)+1)]
+      @products = Product.all.sort_by{|x| x.category.try("name").to_s}[(((page-1)*(PER_PAGE)))..(((page-1)*(PER_PAGE))+(PER_PAGE-1))]
     elsif params[:sort].to_s == "user_name"
-      @products = Product.all.sort_by{|x| x.user.try("user_name").to_s}[(((page-1)*2))..(((page-1)*2)+1)]
+      @products = Product.all.sort_by{|x| x.user.try("user_name").to_s}[(((page-1)*(PER_PAGE)))..(((page-1)*(PER_PAGE))+(PER_PAGE-1))]
     elsif params[:sort].to_s == "title"
-      @products = Product.all.sort_by{|x| x.name.to_s}[(((page-1)*2))..(((page-1)*2)+1)]
+      @products = Product.all.sort_by{|x| x.name.to_s}[(((page-1)*(PER_PAGE)))..(((page-1)*(PER_PAGE))+(PER_PAGE-1))]
     else
-      @products = Product.all.sort_by{|x| x.created_at}[(((page-1)*2))..(((page-1)*2)+1)]
+      @products = Product.all.sort_by{|x| x.created_at}[(((page-1)*(PER_PAGE)))..(((page-1)*(PER_PAGE))+(PER_PAGE-1))]
     end
     html = ""
     @products.each do |product|
