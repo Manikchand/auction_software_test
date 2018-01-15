@@ -1,1 +1,1 @@
-PER_PAGE = 2
+PER_PAGE = 27
